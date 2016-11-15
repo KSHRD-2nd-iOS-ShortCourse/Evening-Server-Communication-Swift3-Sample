@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import NVActivityIndicatorView
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: UITableViewController, NVActivityIndicatorViewable {
     
     var books : [JSON]! = [JSON]()
     var coverPhotos : [JSON]! = [JSON]()
@@ -22,6 +23,9 @@ class HomeTableViewController: UITableViewController {
         let nib = UINib(nibName: "TableViewSectionHeader", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "TableSectionHeader")
         
+        let size = CGSize(width: 30, height:30)
+        
+        startAnimating(size, message: "Loading...", type: NVActivityIndicatorType.ballBeat)
         
         Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books").responseJSON { (response) in
             if let data = response.data {
@@ -41,6 +45,7 @@ class HomeTableViewController: UITableViewController {
                                 let jsonObject = JSON(data: data)
                                 self.authors = jsonObject.array
                                 self.tableView.reloadData()
+                                self.stopAnimating()
                             }
                         })
                     }

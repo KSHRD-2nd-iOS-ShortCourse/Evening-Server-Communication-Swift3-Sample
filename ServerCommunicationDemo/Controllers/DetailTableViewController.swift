@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 import Kingfisher
+import NVActivityIndicatorView
 
-class DetailTableViewController: UITableViewController {
+class DetailTableViewController: UITableViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var coverImageView: UIImageView!
     
@@ -25,6 +26,10 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let size = CGSize(width: 30, height:30)
+        
+        startAnimating(size, message: "Loading...", type: NVActivityIndicatorType.ballBeat)
+        
         if let id = bookId {
             Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books/\(id)").responseObject(completionHandler: { (bookResponse: DataResponse<Book>) in
                 
@@ -37,6 +42,7 @@ class DetailTableViewController: UITableViewController {
                             self.descriptionLabel.text = bookData.description!
                             self.coverImageView.image = UIImage(data: try! Data(contentsOf: URL(string: bookCoverData.url!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!))
                             self.tableView.reloadData()
+                            self.stopAnimating()
                         case.failure(let error):
                             print("\(error)")
                         }
