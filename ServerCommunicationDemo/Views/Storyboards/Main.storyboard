@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="902-G7-mXl">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="902-G7-mXl">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -73,6 +73,7 @@ marginally far upon excluding.</string>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="coverImageView" destination="N10-SN-wul" id="6Pt-pm-CJI"/>
                                     <outlet property="descriptionLabel" destination="9g4-Bt-Ki5" id="iDQ-rl-CkI"/>
                                     <outlet property="titleLabel" destination="9nE-Yg-CHx" id="Kfd-6n-g8G"/>
                                 </connections>
@@ -187,7 +188,7 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JH5-3G-6ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803.75" y="208.09859154929578"/>
+            <point key="canvasLocation" x="1871" y="208"/>
         </scene>
         <!--SIGN UP-->
         <scene sceneID="9yx-HS-SyS">
@@ -293,7 +294,7 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="902-G7-mXl" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Mhf-31-8pF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Mhf-31-8pF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

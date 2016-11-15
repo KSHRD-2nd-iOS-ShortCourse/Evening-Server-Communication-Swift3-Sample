@@ -9,11 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Kingfisher
 
 class HomeTableViewController: UITableViewController {
-
-    var books : [JSON]! = [JSON]()
     
+    var books : [JSON]! = [JSON]()
+    var coverPhotos : [JSON]! = [JSON]()
     override func viewDidLoad() {
         super.viewDidLoad()
         Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books").responseJSON { (response) in
@@ -21,20 +22,34 @@ class HomeTableViewController: UITableViewController {
                 // JSON Results
                 let jsonObject = JSON(data: data)
                 self.books = jsonObject.array
-                self.tableView.reloadData()
+                
+                Alamofire.request("http://fakerestapi.azurewebsites.net/api/CoverPhotos").responseJSON(completionHandler: { (response) in
+                    if let data = response.data{
+                        // JSON Results
+                        let jsonObject = JSON(data: data)
+                        self.coverPhotos = jsonObject.array
+                        
+                        self.tableView.reloadData()
+                    }
+                })
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showDetail" {
+            let destView = segue.destination as! DetailTableViewController
+            destView.bookId = String((sender as! IndexPath).row)
+        }
+     }
+ 
 }
 
 
@@ -50,17 +65,25 @@ extension HomeTableViewController {
     }
     
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath) as! HomeTableViewCell
-     // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath) as! HomeTableViewCell
+        // Configure the cell...
         
         let book = self.books[indexPath.row]
-        
+        let cover = self.coverPhotos[indexPath.row]
         cell.titleLabel.text = book["Title"].stringValue
         cell.descriptionLabel.text = book["Description"].stringValue
-     return cell
-     }
+        
+        //cell.coverImageView.image = UIImage(data: try! Data(contentsOf: URL(string: cover["Url"].stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!))
+        cell.coverImageView.kf.setImage(with: URL(string: cover["Url"].stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!), placeholder: UIImage(named: "google_logo"))
+        return cell
+    }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "showDetail", sender: indexPath)
+        
+    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -97,12 +120,3 @@ extension HomeTableViewController {
      }
      */
 }
-
-
-
-
-
-
-
-
-

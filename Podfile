@@ -8,4 +8,7 @@ target 'ServerCommunicationDemo' do
 pod 'Alamofire'
 pod 'NVActivityIndicatorView'
 pod 'SwiftyJSON'
+pod 'Kingfisher'
+pod 'ObjectMapper'
+pod 'AlamofireObjectMapper'
 end
