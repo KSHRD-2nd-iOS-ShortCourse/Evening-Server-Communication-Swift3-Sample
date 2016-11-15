@@ -36,6 +36,7 @@ class DetailTableViewController: UITableViewController {
                             self.titleLabel.text = bookData.title!
                             self.descriptionLabel.text = bookData.description!
                             self.coverImageView.image = UIImage(data: try! Data(contentsOf: URL(string: bookCoverData.url!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!))
+                            self.tableView.reloadData()
                         case.failure(let error):
                             print("\(error)")
                         }
@@ -49,6 +50,21 @@ class DetailTableViewController: UITableViewController {
             })
         }
        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 2 {
+            let height = self.heightForText(textView: self.descriptionLabel)
+            return height < 56 ? 56 : height + 30
+        }else{
+            return 56
+        }
+    }
+    
+    func heightForText(textView: UILabel) -> CGFloat {
+        textView.numberOfLines = 0
+        textView.sizeToFit()
+        return textView.frame.size.height
     }
 
 }

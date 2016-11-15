@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -157,16 +158,15 @@ marginally far upon excluding.</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="244" id="JwP-qj-ZfC">
-                                        <rect key="frame" x="0.0" y="316" width="320" height="244"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="190" id="JwP-qj-ZfC">
+                                        <rect key="frame" x="0.0" y="316" width="320" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JwP-qj-ZfC" id="cXi-p2-Q0u">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf7-g4-U4P">
-                                                    <rect key="frame" x="8" y="8" width="304" height="182"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf7-g4-U4P">
+                                                    <rect key="frame" x="8" y="8" width="304" height="167.5"/>
                                                     <string key="text">Aesthetic kickstarter butcher tattooed. Edison bulb tofu etsy lomo, messenger bag lumbersexual salvia vaporware. Sriracha biodiesel literally crucifix, schlitz meh flannel venmo. 
 
 Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever. Keytar next level hell of you probably haven't heard of them man braid microdosing. </string>
@@ -175,6 +175,12 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pf7-g4-U4P" secondAttribute="bottom" constant="6.5" id="7k3-bd-L2t"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pf7-g4-U4P" secondAttribute="trailing" id="hur-iT-fv8"/>
+                                                <constraint firstAttribute="topMargin" secondItem="pf7-g4-U4P" secondAttribute="top" id="too-Cc-ezQ"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="pf7-g4-U4P" secondAttribute="leading" id="vwV-fO-noK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -193,7 +199,7 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JH5-3G-6ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871" y="208"/>
+            <point key="canvasLocation" x="1869.375" y="207.04225352112675"/>
         </scene>
         <!--SIGN UP-->
         <scene sceneID="9yx-HS-SyS">

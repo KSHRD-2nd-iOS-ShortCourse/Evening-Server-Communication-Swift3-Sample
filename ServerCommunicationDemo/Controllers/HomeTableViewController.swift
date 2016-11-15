@@ -15,8 +15,14 @@ class HomeTableViewController: UITableViewController {
     
     var books : [JSON]! = [JSON]()
     var coverPhotos : [JSON]! = [JSON]()
+    var authors : [JSON]! = [JSON]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nib = UINib(nibName: "TableViewSectionHeader", bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "TableSectionHeader")
+        
+        
         Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books").responseJSON { (response) in
             if let data = response.data {
                 // JSON Results
@@ -29,7 +35,14 @@ class HomeTableViewController: UITableViewController {
                         let jsonObject = JSON(data: data)
                         self.coverPhotos = jsonObject.array
                         
-                        self.tableView.reloadData()
+                        Alamofire.request("http://fakerestapi.azurewebsites.net/api/Authors").responseJSON(completionHandler: { (response) in
+                            if let data = response.data{
+                                // JSON Results
+                                let jsonObject = JSON(data: data)
+                                self.authors = jsonObject.array
+                                self.tableView.reloadData()
+                            }
+                        })
                     }
                 })
             }
@@ -56,12 +69,13 @@ class HomeTableViewController: UITableViewController {
 // MARK: - Table view data source
 extension HomeTableViewController {
     
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.books.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.books.count
+        return 1
     }
     
     
@@ -69,8 +83,8 @@ extension HomeTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath) as! HomeTableViewCell
         // Configure the cell...
         
-        let book = self.books[indexPath.row]
-        let cover = self.coverPhotos[indexPath.row]
+        let book = self.books[indexPath.section]
+        let cover = self.coverPhotos[indexPath.section]
         cell.titleLabel.text = book["Title"].stringValue
         cell.descriptionLabel.text = book["Description"].stringValue
         
@@ -83,6 +97,22 @@ extension HomeTableViewController {
         
         performSegue(withIdentifier: "showDetail", sender: books[indexPath.row]["ID"].stringValue)
         
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Here, we use NSFetchedResultsController
+        // And we simply use the section name as title
+        // Dequeue with the reuse identifier
+        let cell = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableSectionHeader")
+        
+        let header = cell as! TableViewSectionHeader
+        header.titleLabel.text = authors[section]["FirstName"].stringValue
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     /*
