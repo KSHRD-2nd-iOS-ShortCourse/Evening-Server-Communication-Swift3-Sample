@@ -55,19 +55,22 @@ class HomeTableViewController: UITableViewController, NVActivityIndicatorViewabl
     }
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
         
         if segue.identifier == "showDetail" {
             let destView = segue.destination as! DetailTableViewController
             destView.bookId = sender as? String
+        }else if segue.identifier == "showEdit"{
+            let destView = segue.destination as! AddEditInfoTableViewController
+            destView.book = sender as? [String : Any]
         }
-     }
- 
+    }
+    
 }
 
 
@@ -100,7 +103,7 @@ extension HomeTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "showDetail", sender: books[indexPath.row]["ID"].stringValue)
+        performSegue(withIdentifier: "showDetail", sender: books[indexPath.section]["ID"].stringValue)
         
     }
     
@@ -120,13 +123,29 @@ extension HomeTableViewController {
         return 50
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            
+            self.books.remove(at: indexPath.section)
+            self.coverPhotos.remove(at: indexPath.section)
+            self.authors.remove(at: indexPath.section)
+            tableView.reloadData()
+        }
+        
+        let done = UITableViewRowAction(style: .default, title: "Edit") { action, index in
+            
+            self.performSegue(withIdentifier: "showEdit", sender: self.books[indexPath.section].dictionaryObject)
+        }
+        done.backgroundColor = UIColor.brown
+        return [delete, done]
+    }
     
     /*
      // Override to support editing the table view.

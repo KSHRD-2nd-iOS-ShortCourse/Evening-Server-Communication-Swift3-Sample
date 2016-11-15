@@ -86,7 +86,13 @@ marginally far upon excluding.</string>
                             <outlet property="delegate" destination="bsM-PS-hCI" id="Z01-XV-cJd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="fbx-eZ-nTu"/>
+                    <navigationItem key="navigationItem" title="Home" id="fbx-eZ-nTu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sJD-gk-If7">
+                            <connections>
+                                <segue destination="gta-i3-KEm" kind="show" identifier="showEdit" id="2cD-Kc-q3z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Kpe-yR-7A7" kind="show" identifier="showDetail" id="twz-DG-iRf"/>
                     </connections>
@@ -199,7 +205,7 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JH5-3G-6ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1869.375" y="207.04225352112675"/>
+            <point key="canvasLocation" x="1995" y="-195"/>
         </scene>
         <!--SIGN UP-->
         <scene sceneID="9yx-HS-SyS">
@@ -261,9 +267,13 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hV9-MO-22S">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Img" translatesAutoresizingMaskIntoConstraints="NO" id="hV9-MO-22S">
                                                     <rect key="frame" x="8" y="7" width="304" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <gestureRecognizers/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="cc4-0v-FSS" appends="YES" id="M4z-lV-RVw"/>
+                                                    </connections>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -282,6 +292,9 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                                                     <state key="normal" title="Save">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="save:" destination="gta-i3-KEm" eventType="touchUpInside" id="JGn-0B-cNk"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -295,10 +308,20 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="SIGN UP" id="2Be-MM-mYf"/>
+                    <connections>
+                        <outlet property="coverImageView" destination="hV9-MO-22S" id="fx9-FA-fxZ"/>
+                        <outlet property="descriptionLabel" destination="XJR-MT-rvA" id="eHe-du-ZQ2"/>
+                        <outlet property="titleLabel" destination="REr-IV-tat" id="V5T-ev-VJ7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hye-OQ-gmx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cc4-0v-FSS">
+                    <connections>
+                        <action selector="browseImage:" destination="gta-i3-KEm" id="iAp-c4-snS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2595" y="208.09859154929578"/>
+            <point key="canvasLocation" x="2003" y="490"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kk9-fi-yca">
