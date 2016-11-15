@@ -46,7 +46,7 @@ class HomeTableViewController: UITableViewController {
         
         if segue.identifier == "showDetail" {
             let destView = segue.destination as! DetailTableViewController
-            destView.bookId = String((sender as! IndexPath).row)
+            destView.bookId = sender as? String
         }
      }
  
@@ -81,7 +81,7 @@ extension HomeTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "showDetail", sender: indexPath)
+        performSegue(withIdentifier: "showDetail", sender: books[indexPath.row]["ID"].stringValue)
         
     }
     

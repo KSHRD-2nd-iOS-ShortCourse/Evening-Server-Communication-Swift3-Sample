@@ -94,10 +94,10 @@ marginally far upon excluding.</string>
             </objects>
             <point key="canvasLocation" x="1110" y="209.1549295774648"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Detail Table View Controller-->
         <scene sceneID="WHX-mY-dHE">
             <objects>
-                <tableViewController id="Kpe-yR-7A7" sceneMemberID="viewController">
+                <tableViewController id="Kpe-yR-7A7" customClass="DetailTableViewController" customModule="ServerCommunicationDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="IdZ-Sn-yIg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,6 +185,11 @@ Drinking vinegar beard deep v mlkshk, cornhole typewriter venmo selfies whatever
                             <outlet property="delegate" destination="Kpe-yR-7A7" id="y4r-rq-aIQ"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="coverImageView" destination="tUJ-u7-EMJ" id="3RK-cm-OY5"/>
+                        <outlet property="descriptionLabel" destination="pf7-g4-U4P" id="Nno-lE-3Xv"/>
+                        <outlet property="titleLabel" destination="DQK-C5-0IY" id="2XO-NF-1QB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JH5-3G-6ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
