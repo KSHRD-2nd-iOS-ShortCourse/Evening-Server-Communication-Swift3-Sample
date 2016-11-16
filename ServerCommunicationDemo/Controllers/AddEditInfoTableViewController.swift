@@ -8,8 +8,9 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
 
-class AddEditInfoTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddEditInfoTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NVActivityIndicatorViewable {
     
     var book : [String : Any]?
     
@@ -17,7 +18,7 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
     @IBOutlet var titleLabel: UITextField!
     
     @IBOutlet var coverImageView: UIImageView!
-     let imagePicker = UIImagePickerController()
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
         // set delegate for imagePicker
         imagePicker.delegate = self
     }
-
+    
     @IBAction func browseImage(_ sender: Any) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
@@ -71,13 +72,17 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
     }
     
     @IBAction func save(_ sender: Any) {
+        let size = CGSize(width: 30, height:30)
+        
+        startAnimating(size, message: "Loading...", type: NVActivityIndicatorType.ballBeat)
+        
         /***** NSDateFormatter Part *****/
         
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
         let dateString = dayTimePeriodFormatter.string(from: Date())
-    
+        
         //dateString now contains the string:
         //  "December 25, 2016 at 7:00:00 AM"
         print(dateString)
@@ -87,28 +92,25 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
             "PageCount": 0,
             "Excerpt": "string",
             "PublishDate": dateString
-        ] as [String : Any]
+            ] as [String : Any]
         
-        if book != nil {
-            Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books/\(book!["ID"]!)", method: .put, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-                
-                if response.response?.statusCode == 200 {
-                    print("put success")
-                }else{
-                    print("put false")
-                }
-            }
-        }else{
-            Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books", method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-                
-                if response.response?.statusCode == 200 {
-                    print("post success")
-                }else{
-                    print("post false")
-                }
-            }
+        var url = "http://fakerestapi.azurewebsites.net/api/Books"
+        var method = HTTPMethod.post
+        
+        if book != nil  {
+            url = "http://fakerestapi.azurewebsites.net/api/Books/\(book!["ID"]!)"
+            method = HTTPMethod.put
         }
         
-
+        
+        Alamofire.request(url, method: method, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            self.stopAnimating()
+            if response.response?.statusCode == 200 {
+                print("\(method) success")
+                _ = self.navigationController?.popViewController(animated: true)
+            }else{
+                print("\(method) false")
+            }
+        }
     }
-  }
+}
