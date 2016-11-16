@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wWi-EG-4Xp">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wWi-EG-4Xp">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -182,7 +182,7 @@
         <!--RESET PASSWORD-->
         <scene sceneID="ckd-bc-0vi">
             <objects>
-                <tableViewController id="F2l-Of-Swe" sceneMemberID="viewController">
+                <tableViewController id="F2l-Of-Swe" customClass="ForgetPasswordTableViewController" customModule="ServerCommunicationDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jvj-2i-DXp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -246,6 +246,9 @@
                                                     <state key="normal" title="RESET PASSWORD">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="resetPasswordAction:" destination="F2l-Of-Swe" eventType="touchUpInside" id="pTE-Xx-vCH"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -259,6 +262,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="RESET PASSWORD" id="WMy-Bg-Bb9"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="lGG-4y-DM5" id="lsO-2t-2ce"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="go3-Wp-2h4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -267,7 +273,7 @@
         <!--SIGN UP-->
         <scene sceneID="dIx-YD-UZY">
             <objects>
-                <tableViewController id="nYP-o2-vhQ" sceneMemberID="viewController">
+                <tableViewController id="nYP-o2-vhQ" customClass="SignUpTableViewController" customModule="ServerCommunicationDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hCL-BC-1Zi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,13 +288,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pTM-X5-5us">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pTM-X5-5us">
                                                     <rect key="frame" x="8" y="10" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RAO-Bz-cfW">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RAO-Bz-cfW">
                                                     <rect key="frame" x="163" y="10" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -382,6 +388,9 @@
                                                     <state key="normal" title="SIGN UP">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="signUpAction:" destination="nYP-o2-vhQ" eventType="touchUpInside" id="8c6-jb-WgX"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -420,6 +429,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="SIGN UP" id="5VX-Tz-ygN"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="RAO-Bz-cfW" id="pSW-s6-YW1"/>
+                        <outlet property="genderSegmentedControl" destination="xwd-Zb-vBt" id="ahE-Vm-mE2"/>
+                        <outlet property="nameTextField" destination="pTM-X5-5us" id="0h5-pr-PCV"/>
+                        <outletCollection property="passwordTextField" destination="gec-2l-lD5" id="Ijv-LN-I9X"/>
+                        <outletCollection property="passwordTextField" destination="ylM-L0-ENK" id="ViK-br-lrz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMz-En-HYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
