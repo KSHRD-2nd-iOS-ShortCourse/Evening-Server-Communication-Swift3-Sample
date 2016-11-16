@@ -23,6 +23,42 @@ class HomeTableViewController: UITableViewController, NVActivityIndicatorViewabl
         let nib = UINib(nibName: "TableViewSectionHeader", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "TableSectionHeader")
         
+        
+        
+        self.refreshControl?.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        
+        getData()
+        
+    }
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showDetail" {
+            let destView = segue.destination as! DetailTableViewController
+            destView.bookId = sender as? String
+        }else if segue.identifier == "showEdit"{
+            let destView = segue.destination as! AddEditInfoTableViewController
+            destView.book = sender as? [String : Any]
+        }
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+        getData()
+        
+    }
+    
+    func getData() {
+        
         let size = CGSize(width: 30, height:30)
         
         startAnimating(size, message: "Loading...", type: NVActivityIndicatorType.ballBeat)
@@ -46,6 +82,7 @@ class HomeTableViewController: UITableViewController, NVActivityIndicatorViewabl
                                 self.authors = jsonObject.array
                                 self.tableView.reloadData()
                                 self.stopAnimating()
+                                self.refreshControl?.endRefreshing()
                             }
                         })
                     }
@@ -53,24 +90,6 @@ class HomeTableViewController: UITableViewController, NVActivityIndicatorViewabl
             }
         }
     }
-    
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "showDetail" {
-            let destView = segue.destination as! DetailTableViewController
-            destView.bookId = sender as? String
-        }else if segue.identifier == "showEdit"{
-            let destView = segue.destination as! AddEditInfoTableViewController
-            destView.book = sender as? [String : Any]
-        }
-    }
-    
 }
 
 
@@ -133,10 +152,18 @@ extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
             
-            self.books.remove(at: indexPath.section)
-            self.coverPhotos.remove(at: indexPath.section)
-            self.authors.remove(at: indexPath.section)
-            tableView.reloadData()
+            self.startAnimating()
+            Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books/\(self.books[indexPath.section]["ID"])", method: .delete).responseJSON { (response) in
+                if response.response?.statusCode == 200 {
+                    tableView.beginUpdates()
+                    self.books.remove(at: indexPath.section)
+                    self.coverPhotos.remove(at: indexPath.section)
+                    self.authors.remove(at: indexPath.section)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+                    tableView.endUpdates()
+                    self.stopAnimating()
+                }
+            }
         }
         
         let done = UITableViewRowAction(style: .default, title: "Edit") { action, index in

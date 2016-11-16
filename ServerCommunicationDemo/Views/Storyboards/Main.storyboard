@@ -93,6 +93,9 @@ marginally far upon excluding.</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="fM1-76-jEG">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <segue destination="Kpe-yR-7A7" kind="show" identifier="showDetail" id="twz-DG-iRf"/>
                     </connections>

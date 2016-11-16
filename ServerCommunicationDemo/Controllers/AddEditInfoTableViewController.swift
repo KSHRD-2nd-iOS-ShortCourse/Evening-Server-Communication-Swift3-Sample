@@ -21,7 +21,6 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(book)
         if let book = book{
             titleLabel.text = book["Title"] as! String?
             descriptionLabel.text = book["Description"] as! String?
@@ -90,12 +89,26 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
             "PublishDate": dateString
         ] as [String : Any]
         
-        Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books", method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            if response.response?.statusCode == 200 {
-                print("success")
-            }else{
-                print("false")
+        if book != nil {
+            Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books/\(book!["ID"]!)", method: .put, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                
+                if response.response?.statusCode == 200 {
+                    print("put success")
+                }else{
+                    print("put false")
+                }
+            }
+        }else{
+            Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books", method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                
+                if response.response?.statusCode == 200 {
+                    print("post success")
+                }else{
+                    print("post false")
+                }
             }
         }
+        
+
     }
   }
