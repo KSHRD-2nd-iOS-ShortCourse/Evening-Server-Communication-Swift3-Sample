@@ -71,10 +71,6 @@ extension SignInTableViewController {
     
     // MARK: Get user
     func getUser() {
-        
-        /*
-         Request
-         */
         Alamofire.request("http://fakerestapi.azurewebsites.net/api/Users").responseJSON { response in
             print(response.request ?? "your value is nil")  // original URL request
             print(response.response ?? "abc") // HTTP URL response

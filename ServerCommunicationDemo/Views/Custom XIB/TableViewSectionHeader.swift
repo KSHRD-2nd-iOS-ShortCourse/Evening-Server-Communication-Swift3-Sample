@@ -13,6 +13,7 @@ class TableViewSectionHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
