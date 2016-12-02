@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5DB5B0F80F57043D9C5F72F4 /* Pods_ServerCommunicationDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87910B6410F77CAC9A6E2E63 /* Pods_ServerCommunicationDemo.framework */; };
+		6F2F4F9D1DF1713500C6AB23 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2F4F9C1DF1713500C6AB23 /* DataManager.swift */; };
 		6F3A09601DD49741008B6E57 /* SignInTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A095F1DD49741008B6E57 /* SignInTableViewController.swift */; };
 		6F5160691DD5ED4C00C5F8B8 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5160681DD5ED4C00C5F8B8 /* HomeTableViewController.swift */; };
 		6F58A3481DD48EA300BB0DB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F58A3471DD48EA300BB0DB7 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		144C7D89BE4F568375B78691 /* Pods-ServerCommunicationDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServerCommunicationDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ServerCommunicationDemo/Pods-ServerCommunicationDemo.release.xcconfig"; sourceTree = "<group>"; };
+		6F2F4F9C1DF1713500C6AB23 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		6F3A095F1DD49741008B6E57 /* SignInTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTableViewController.swift; sourceTree = "<group>"; };
 		6F5160681DD5ED4C00C5F8B8 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		6F58A3441DD48EA300BB0DB7 /* ServerCommunicationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServerCommunicationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6F2F4F9B1DF1713500C6AB23 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6F2F4F9C1DF1713500C6AB23 /* DataManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		6F58A33B1DD48EA300BB0DB7 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 				6F58A3771DD48F2800BB0DB7 /* Models */,
 				6F58A3761DD48F2800BB0DB7 /* Controllers */,
 				6F58A3601DD48EDC00BB0DB7 /* Views */,
+				6F2F4F9B1DF1713500C6AB23 /* Service */,
 				6F58A3591DD48EDC00BB0DB7 /* Assets */,
 				6F58A3501DD48EA300BB0DB7 /* LaunchScreen.storyboard */,
 				6F58A3531DD48EA300BB0DB7 /* Info.plist */,
@@ -327,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F869DE31DDB6CFA00D709FA /* Book.swift in Sources */,
+				6F2F4F9D1DF1713500C6AB23 /* DataManager.swift in Sources */,
 				6F869DE11DDB6A9C00D709FA /* DetailTableViewController.swift in Sources */,
 				6F5160691DD5ED4C00C5F8B8 /* HomeTableViewController.swift in Sources */,
 				6F58A3701DD48EDD00BB0DB7 /* HomeTableViewCell.swift in Sources */,

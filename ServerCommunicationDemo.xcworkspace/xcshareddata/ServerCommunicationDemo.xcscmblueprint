@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BAE680001D470B4ADA243B9C3E0333F255D4EFEC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "041D1AE9AD6E7AC4F308FF518FE782097D4826ED" : 9223372036854775807,
+    "BAE680001D470B4ADA243B9C3E0333F255D4EFEC" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B3F4C7F8-A174-4B79-8AEA-D746D8D2B117",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "041D1AE9AD6E7AC4F308FF518FE782097D4826ED" : "",
+    "BAE680001D470B4ADA243B9C3E0333F255D4EFEC" : "Evening-Server-Communication-Swift3-Sample\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ServerCommunicationDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ServerCommunicationDemo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/KSHRD-2nd-iOS-ShortCourse\/Evening-Server-Communication-Swift2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "041D1AE9AD6E7AC4F308FF518FE782097D4826ED"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/KSHRD-2nd-iOS-ShortCourse\/Evening-Server-Communication-Swift3-Sample.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BAE680001D470B4ADA243B9C3E0333F255D4EFEC"
+    }
+  ]
+}

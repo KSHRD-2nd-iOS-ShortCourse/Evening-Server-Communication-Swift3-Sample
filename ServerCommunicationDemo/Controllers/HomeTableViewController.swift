@@ -63,19 +63,19 @@ class HomeTableViewController: UITableViewController, NVActivityIndicatorViewabl
         startAnimating(size, message: "Loading...", type: NVActivityIndicatorType.ballBeat)
         
         // request Books, CoverPhotos, Authors
-        Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books").responseJSON { (response) in
+        Alamofire.request(DataManager.Url.BOOK).responseJSON { (response) in
             if let data = response.data {
                 // JSON Results
                 let jsonObject = JSON(data: data)
                 self.books = jsonObject.array
                 
-                Alamofire.request("http://fakerestapi.azurewebsites.net/api/CoverPhotos").responseJSON(completionHandler: { (response) in
+                Alamofire.request(DataManager.Url.Cover).responseJSON(completionHandler: { (response) in
                     if let data = response.data{
                         // JSON Results
                         let jsonObject = JSON(data: data)
                         self.coverPhotos = jsonObject.array
                         
-                        Alamofire.request("http://fakerestapi.azurewebsites.net/api/Authors").responseJSON(completionHandler: { (response) in
+                        Alamofire.request(DataManager.Url.AUTHOR).responseJSON(completionHandler: { (response) in
                             if let data = response.data{
                                 // JSON Results
                                 let jsonObject = JSON(data: data)
@@ -129,6 +129,15 @@ extension HomeTableViewController {
         let header = cell as! TableViewSectionHeader
         header.titleLabel.text = authors[section]["FirstName"].stringValue
         
+        // load profile image
+        let coverPhoto = self.coverPhotos[section]
+        
+        let url = URL(string: coverPhoto["Url"].stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        
+        let placeHolderImage = UIImage(named: "google_logo")
+        
+        header.profileImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+        
         return cell
     }
     
@@ -146,7 +155,7 @@ extension HomeTableViewController {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
             
             self.startAnimating()
-            Alamofire.request("http://fakerestapi.azurewebsites.net/api/Books/\(self.books[indexPath.section]["ID"])", method: .delete).responseJSON { (response) in
+            Alamofire.request("\(DataManager.Url.BOOK)/\(self.books[indexPath.section]["ID"])", method: .delete).responseJSON { (response) in
                 if response.response?.statusCode == 200 {
                     
                     tableView.beginUpdates()

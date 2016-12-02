@@ -58,17 +58,22 @@ class AddEditInfoTableViewController: UITableViewController, UIImagePickerContro
             "PublishDate": dateString
             ] as [String : Any]
         
-        var url = "http://fakerestapi.azurewebsites.net/api/Books"
+        var url = DataManager.Url.BOOK
         var method = HTTPMethod.post
         
         // if have book data > update
         if book != nil  {
-            url = "http://fakerestapi.azurewebsites.net/api/Books/\(book!["ID"]!)"
+            url = "\(DataManager.Url.BOOK)/\(book!["ID"]!)"
             method = HTTPMethod.put
         }
         
         // request
-        Alamofire.request(url, method: method, parameters: paramater, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        Alamofire.request(url,
+                          method: method,
+                          parameters: paramater,
+                          encoding: JSONEncoding.default,
+                          headers: DataManager.Url.HEADERS)
+            .responseJSON { (response) in
             self.stopAnimating()
             if response.response?.statusCode == 200 {
                 print("\(method) success")

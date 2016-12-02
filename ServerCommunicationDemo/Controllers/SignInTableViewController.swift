@@ -43,7 +43,7 @@ extension SignInTableViewController {
          Request :
          - JSONEncoding type creates a JSON representation of the parameters object
          */
-        Alamofire.request("http://fakerestapi.azurewebsites.net/api/Users",
+        Alamofire.request(DataManager.Url.USER,
                           method: .post,
                           parameters: paramater,
                           encoding: JSONEncoding.default)
@@ -71,7 +71,7 @@ extension SignInTableViewController {
     
     // MARK: Get user
     func getUser() {
-        Alamofire.request("http://fakerestapi.azurewebsites.net/api/Users").responseJSON { response in
+        Alamofire.request(DataManager.Url.USER).responseJSON { response in
             print(response.request ?? "your value is nil")  // original URL request
             print(response.response ?? "abc") // HTTP URL response
             print(response.data  ?? "")     // server data
