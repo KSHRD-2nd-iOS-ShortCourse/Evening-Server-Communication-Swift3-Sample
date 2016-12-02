@@ -69,7 +69,7 @@ class HomeTableViewController: UITableViewController, NVActivityIndicatorViewabl
                 let jsonObject = JSON(data: data)
                 self.books = jsonObject.array
                 
-                Alamofire.request(DataManager.Url.Cover).responseJSON(completionHandler: { (response) in
+                Alamofire.request(DataManager.Url.COVER).responseJSON(completionHandler: { (response) in
                     if let data = response.data{
                         // JSON Results
                         let jsonObject = JSON(data: data)
